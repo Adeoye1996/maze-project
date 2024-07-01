@@ -3,14 +3,18 @@
 
 int main(int argc, char *argv[]) {
     instance_t *instance = initialize_instance();
+    if (!instance) {
+        fprintf(stderr, "Failed to initialize instance\n");
+        return 1;
+    }
 
-    level current_level;
+    level current_level = {0};  // Initialize all fields to zero/NULL
 
     if (argc > 1) {
         current_level.map = create_map(argv[1], &current_level.play, &current_level.win, &current_level.height);
         if (!current_level.map) {
-            printf("Error: Could not open file %s\n", argv[1]);
-            printf("Error: could not load map\n");
+            fprintf(stderr, "Error: Could not open file %s\n", argv[1]);
+            fprintf(stderr, "Error: could not load map\n");
             // Use level1 as the default fallback map
             current_level.map = (char **)levels[0];
             current_level.height = level_heights[0];
@@ -25,8 +29,8 @@ int main(int argc, char *argv[]) {
         current_level.win = (int_s){13, 13}; // default win position for level1
     }
 
-    keys key_state = {0, 0, 0, 0};
-    game_state_t game_state = {0};
+    keys key_state = {0};  // Initialize all fields to zero
+    game_state_t game_state = {0};  // Initialize all fields to zero
 
     while (!key_state.esc && !game_state.win) {
         handle_events(&key_state);
@@ -43,5 +47,5 @@ int main(int argc, char *argv[]) {
         free_map(current_level.map, current_level.height);
     }
 
-    return (0);
+    return 0;
 }
