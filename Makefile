@@ -2,12 +2,12 @@
 CC=gcc
 
 # Flags to create object files with
-CFLAGS=-g -Wall -Werror -Wextra -pedantic
+CFLAGS=-g -Wall -Werror -Wextra -pedantic -I./inc
 # Flags to link the SDL2 library
 SDL_FLAGS=-I/usr/local/include/SDL2 -L/usr/lib/x86_64-linux-gnu -lSDL2 -lm
 
 # All C program files
-SRC=./src/create_map.c ./src/build_world.c ./src/handle_events.c ./src/memory_management.c ./src/render.c ./src/initialize_instance.c ./src/player_movement.c ./src/game_win.c ./src/main.c
+SRC=./src/create_map.c ./src/build_world.c ./src/handle_events.c ./src/memory_management.c ./src/render.c ./src/initialize_instance.c ./src/player_movement.c ./src/game_win.c ./src/main.c ./levels.c
 
 # The names of all object files
 OBJ=$(SRC:.c=.o)

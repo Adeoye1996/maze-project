@@ -1,5 +1,5 @@
 /* levels.c */
-#include "maze.h"
+#include "levels.h"
 
 const char *level1[] = {
     "1111111111111111111111111",
