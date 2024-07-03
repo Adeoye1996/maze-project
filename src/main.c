@@ -5,7 +5,7 @@ int main(int argc, char *argv[]) {
     instance_t *instance = initialize_instance();
     if (!instance) {
         fprintf(stderr, "Failed to initialize instance\n");
-        return 1;
+        return (1);
     }
 
     level current_level = {0};  // Initialize all fields to zero/NULL
@@ -49,5 +49,5 @@ int main(int argc, char *argv[]) {
         free_map(current_level.map, current_level.height);
     }
 
-    return 0;
+    return (0);
 }
