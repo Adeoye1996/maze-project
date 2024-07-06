@@ -1,10 +1,9 @@
-# Makefile
-
 # Compiler to use
 CC = gcc
 
 # Flags to create object files with
-CFLAGS = -g -Wall -Werror -Wextra -pedantic -I./inc
+CFLAGS = -g -Wall -Werror -Wextra -pedantic -I./src -I./inc
+
 # Flags to link the SDL2 library
 SDL_FLAGS = -I/usr/local/include/SDL2 -L/usr/lib/x86_64-linux-gnu -lSDL2 -lm
 
@@ -13,6 +12,7 @@ SRC = ./src/create_map.c ./src/build_world.c ./src/handle_events.c ./src/memory_
 
 # The names of all object files
 OBJ = $(SRC:.c=.o)
+
 # Executable name
 NAME = maze
 
@@ -39,4 +39,3 @@ fclean: clean oclean
 
 # Run full clean and recompile all files
 re: fclean all
-
