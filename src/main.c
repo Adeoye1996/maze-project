@@ -2,15 +2,15 @@
 #include "levels.h"
 
 int main(int argc, char *argv[]) {
-	instance_t *instance = initialize_instance();
-	if (!instance) {
-		fprintf(stderr, "Failed to initialize instance\n");
-
-		return (1);
+    instance_t *instance = initialize_instance();
+    if (!instance) {
+        fprintf(stderr, "Failed to initialize instance\n");
+        return 1;
     }
-	level current_level = {0};  // Initialize all fields to zero/NULL
-	current_level.plane = (double_s){0.0, 0.66}; // Default plane vector
-	current_level.dir = (double_s){-1.0, 0.0};   // Default direction vector
+
+    level current_level = {0};  // Initialize all fields to zero/NULL
+    current_level.plane = (double_s){0.0, 0.66}; // Default plane vector
+    current_level.dir = (double_s){-1.0, 0.0};   // Default direction vector
 
     if (argc > 1) {
         current_level.map = create_map(argv[1], &current_level.play, &current_level.win, &current_level.height);
@@ -49,5 +49,5 @@ int main(int argc, char *argv[]) {
         free_map(current_level.map, current_level.height);
     }
 
-    return (0);
+    return 0;
 }

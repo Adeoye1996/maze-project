@@ -4,7 +4,7 @@
  * Desc: The main function to run the maze game using SDL.
  */
 
-#include "../maze.h"
+#include "maze.h"
 
 /**
  * main - The main function to run the maze game.

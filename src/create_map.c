@@ -1,4 +1,4 @@
-#include "../maze.h"
+#include "maze.h"
 
 /**
  * get_line_count - Get the number of lines in the file string

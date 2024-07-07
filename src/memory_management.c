@@ -12,10 +12,9 @@ void free_instance(instance_t *instance) {
     free(instance);
 }
 
-void free_map(char **map, int height) {
-    for (int i = 0; i < height; i++) {
+void free_map(char **map, size_t height) {  // Update parameter type to size_t
+    for (size_t i = 0; i < height; i++) {
         free(map[i]);
     }
     free(map);
 }
-

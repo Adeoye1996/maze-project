@@ -1,37 +1,29 @@
-/*
- * File: build_world.c
- * Auth: Abdulazeez Abdulrazak
- * Desc: Functions to build levels from map files.
- */
+#include "maze.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "../maze.h"
-
-/**
- * build_world_from_args - Build an array of levels from map files.
- * @num_of_lvls: Number of levels to build.
- * @level_files: Array of file paths containing map data for each level.
- *
- * Return: Pointer to an array of levels, or NULL on failure.
- **/
-level *build_world_from_args(int num_of_lvls, char *level_files[])
-{
-    level stage = {NULL, 0, {0, 0}, {2, 2}, {-1, 0}, {0, 0.5}};
+level *build_world_from_args(int num_of_lvls, char *level_files[]) {
     level *levels;
-    int i, lvl;
+    size_t map_height;
 
-    levels = malloc(sizeof(level) * (num_of_lvls - 1));
-    if (levels == NULL)
-        return (NULL);
-
-    lvl = 0;
-    for (i = 1; i < num_of_lvls; i++, lvl++)
-    {
-        stage.map = create_map(level_files[i], &stage.play, &stage.win,
-                               &stage.height);
-        if (stage.map == NULL)
-            return (NULL);
-        levels[lvl] = stage;
+    levels = malloc(sizeof(level) * num_of_lvls);
+    if (!levels) {
+        fprintf(stderr, "Error: Could not allocate memory for levels\n");
+        return NULL;
     }
 
-    return (levels);
+    for (int i = 0; i < num_of_lvls; i++) {
+        // Initialize stage with appropriate values
+        level stage = {NULL, 0, {0.0, 0.0}, {0.0, 0.0}, {-1.0, 0.0}, {0.0, 0.5}};
+        stage.map = create_map(level_files[i], &stage.play, &stage.win, &map_height);
+        if (stage.map == NULL) {
+            fprintf(stderr, "Error: Could not create map for level %d\n", i);
+            free(levels);
+            return NULL;
+        }
+        stage.height = map_height;
+        levels[i] = stage;
+    }
+
+    return levels;
 }

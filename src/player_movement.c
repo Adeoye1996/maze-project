@@ -5,14 +5,13 @@ void movement(keys key_state, double_s *plane, double_s *dir, double_s *play, ch
     if (!plane || !dir || !play || !map) return;
 
     // Movement logic here
-    // Example:
-    if (key_state.up) {
+    if (key_state.w) {
         play->x += dir->x * MOVE_SPEED;
         play->y += dir->y * MOVE_SPEED;
     }
-    if (key_state.down) {
+    if (key_state.s) {
         play->x -= dir->x * MOVE_SPEED;
         play->y -= dir->y * MOVE_SPEED;
     }
-    // Additional movement logic...
+    // Additional movement logic for left and right if needed
 }

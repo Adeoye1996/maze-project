@@ -4,7 +4,7 @@
  * Desc: Functions for raycasting and distance calculations.
  */
 
-#include "../maze.h"
+#include "maze.h"
 
 /**
  * check_ray_dir - Determine which direction the ray is being cast.
